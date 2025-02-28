@@ -8,13 +8,13 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #E9E3DD;
+            background-color: #FFF0F5;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: #D9CFC4;
+            background: linear-gradient(to right, #FFB6C1, #87CEFA, #FFFFE0);
             text-align: center;
             padding: 30px 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -22,7 +22,7 @@
 
         h1 {
             font-size: 3em;
-            color: #6F6158;
+            color: #333;
             margin-bottom: 0;
             font-weight: 700;
         }
@@ -32,27 +32,44 @@
             width: 80%;
             max-width: 800px;
             padding: 30px;
-            background-color: #F0EAE4;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, #FFE4E1, #B0E0E6, #FFFFE0);
         }
 
      .story-title {
             font-size: 1.8em;
-            color: #8D7F76;
+            color: #666;
             margin-top: 0;
+            cursor: pointer;
+            text-decoration: underline;
         }
 
      .story-content {
-            color: #554941;
+            color: #444;
             line-height: 1.6;
+            display: none;
+        }
+
+     .like-button {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+     .like-count {
+            margin-left: 5px;
         }
 
         footer {
-            background-color: #D9CFC4;
+            background: linear-gradient(to left, #FFB6C1, #87CEFA, #FFFFE0);
             text-align: center;
             padding: 15px 0;
-            color: #6F6158;
+            color: #333;
         }
     </style>
 </head>
@@ -64,11 +81,24 @@
     <div class="story-section">
         <h2 class="story-title">路灯下的陪伴</h2>
         <p class="story-content">那天夜里，我独自走在回家的路上，心情低落。小区门口的路灯下，一直陪着我的小狗突然跑了过来，它围着我欢快地摇着尾巴，仿佛在告诉我不要难过。在那一瞬间，心中的阴霾被它的温暖驱散。</p>
+        <button class="like-button" onclick="likeStory(this)">点赞</button>
+        <span class="like-count" id="like-count-1">0</span>
     </div>
     <div class="story-section">
         <h2 class="story-title">旧书里的惊喜</h2>
         <p class="story-content">整理书架时，翻出一本多年前的旧书。打开后，发现里面夹着一张纸条，是曾经好友写的鼓励话语。那些早已被遗忘的美好回忆瞬间涌上心头，也让我感受到了时光里藏着的温暖。</p>
+        <button class="like-button" onclick="likeStory(this)">点赞</button>
+        <span class="like-count" id="like-count-2">0</span>
     </div>
     <footer>
-        &
+        &copy; 2025 暖光集语 版权所有
+    </footer>
+    <script>
+        function likeStory(button) {
+            const likeCountElement = button.nextElementSibling;
+            let count = parseInt(likeCountElement.textContent);
+            count++;
+            likeCountElement.textContent = count;
+        }
 
+        document.addEventListener("DOMContent
