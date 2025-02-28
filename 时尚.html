@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时尚穿搭指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .style-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .style-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .style-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .style-info {
+            padding: 20px;
+        }
+
+        .style-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+        }
+
+        .style-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .like-button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            float: right;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">StyleGuide</div>
+            <div class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#styles">风格推荐</a>
+                <a href="#trends">时尚趋势</a>
+                <a href="#about">关于我们</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <h2 style="text-align: center; margin-bottom: 30px;">热门穿搭风格推荐</h2>
+        <div class="styles-grid">
+            <!-- 风格卡片 1 -->
+            <div class="style-card">
+                <img src="https://images.unsplash.com/photo-1580708005090-33d88800e5ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="休闲风格" class="style-image">
+                <div class="style-info">
+                    <h3>休闲风格</h3>
+                    <p>轻松随意的穿搭，适合日常出行。以卫衣、牛仔裤、运动鞋为主，搭配简单的配饰。</p>
+                    <button class="like-button" onclick="
