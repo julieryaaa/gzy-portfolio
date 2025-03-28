@@ -12,34 +12,31 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-image: url('https://wx4.sinaimg.cn/mw690/9987a926gy1hybaqt12u9j20zu1dpwsq.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
         .calculator {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 300px;
+            z-index: 1;
         }
 
         #display {
             width: 100%;
-            height: 50px;
-            font-size: 24px;
+            height: 70px;
+            font-size: 36px;
             text-align: right;
-            margin-bottom: 10px;
-        }
-
-        button {
-            padding: 10px;
-            font-size: 18px;
+            margin-bottom: 20px;
             border: none;
-            background-color: #e0e0e0;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #d0d0d0;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         table {
@@ -49,6 +46,30 @@
 
         td {
             padding: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(45deg, #FF69B4, #87CEFA);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -86,13 +107,18 @@
             </tr>
         </table>
     </div>
+    <div id="fireworks"></div>
+    <audio id="clickSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    <audio id="explosionSound" src="https://www.soundjay.com/explosion/explosion-01.wav"></audio>
     <script>
         function appendToDisplay(value) {
             document.getElementById('display').value += value;
+            playClickSound();
         }
 
         function clearDisplay() {
             document.getElementById('display').value = '';
+            playClickSound();
         }
 
         function calculate() {
@@ -101,9 +127,58 @@
             } catch (error) {
                 document.getElementById('display').value = 'Error';
             }
+            playClickSound();
+            playExplosionSound();
+            createFireworks();
+        }
+
+        function playClickSound() {
+            const clickSound = document.getElementById('clickSound');
+            clickSound.currentTime = 0;
+            clickSound.play();
+        }
+
+        function playExplosionSound() {
+            const explosionSound = document.getElementById('explosionSound');
+            explosionSound.currentTime = 0;
+            explosionSound.play();
+        }
+
+        function createFireworks() {
+            const fireworks = document.getElementById('fireworks');
+            const numParticles = 100;
+            const colors = ['#FF69B4', '#FFB6C1', '#FFC0CB', '#87CEFA', '#ADD8E6', '#B0E0E6'];
+            const randomX = window.innerWidth * Math.random();
+            const randomY = window.innerHeight * Math.random();
+
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '8px';
+                particle.style.height = '8px';
+                particle.style.borderRadius = '50%';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = randomX + 'px';
+                particle.style.top = randomY + 'px';
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = Math.random() * 300;
+                const targetX = randomX + distance * Math.cos(angle);
+                const targetY = randomY + distance * Math.sin(angle);
+                particle.animate([
+                    { transform: `translate(0, 0)`, opacity: 1 },
+                    { transform: `translate(${targetX - randomX}px, ${targetY - randomY}px)`, opacity: 0 }
+                ], {
+                    duration: 1500,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
+                fireworks.appendChild(particle);
+                setTimeout(() => {
+                    particle.remove();
+                }, 1500);
+            }
         }
     </script>
 </body>
 
-</html>
-    
+</html>    
