@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心love CD 封面</title>
+    <title>陈绮贞 - 太聪明 CD 封面</title>
     <style>
         body {
             display: flex;
@@ -32,7 +32,7 @@
             transform: translate(-50%, -50%);
             width: 300px;
             height: 300px;
-            background: url('') no-repeat center center;
+            background: url('https://dummyimage.com/300x300/000/fff&text=Turntable') no-repeat center center;
             background-size: cover;
             border-radius: 50%;
             animation: spin 5s linear infinite;
@@ -45,9 +45,10 @@
             transform: translate(-50%, -50%);
             width: 150px;
             height: 150px;
-            background: url('https://github.com/julieryaaa/gzy-portfolio/blob/main/9987a926gy1hybaqt12u9j20zu1dpwsq.jpg') no-repeat center center;
+            background: url('https://9987a926gy1hybaqt12u9j20zu1dpwsq.jpg/150x150/000/fff&text=Song+Cover') no-repeat center center;
             background-size: cover;
             border-radius: 50%;
+            z-index: 1; /* 让封面图片在唱片机上面 */
         }
 
        .lyrics {
@@ -97,8 +98,11 @@
         }
 
        .paused .turntable,
-       .paused .lyrics p {
+       .paused .lyrics p,
+       .paused audio {
             animation-play-state: paused;
+            pointer-events: none; /* 暂停时防止误操作 */
+            audio.paused = true;
         }
     </style>
 </head>
@@ -109,22 +113,31 @@
         <div class="song-cover"></div>
         <div class="lyrics">
             <p>
-                初心love
-                想要想要更多的爱
-                不应该是那样啊
-                我的第一次全部与你有关
-</p>
+            嘿，我中意你啊
+            想要想要你的可爱
+            想你想到脑袋超载
+        </p>
         </div>
         <button class="pause-button" onclick="togglePause()">暂停</button>
+        <audio id="music" src="https://这里替换成陈绮贞《太聪明》的 MP3 链接" controls style="display: none;"></audio>
     </div>
     <script>
+        const music = document.getElementById('music');
         function togglePause() {
             const cdContainer = document.querySelector('.cd-container');
             cdContainer.classList.toggle('paused');
             const button = document.querySelector('.pause-button');
-            button.textContent = cdContainer.classList.contains('paused') ? '继续' : '暂停';
+            if (cdContainer.classList.contains('paused')) {
+                button.textContent = '继续';
+                music.pause();
+            } else {
+                button.textContent = '暂停';
+                music.play();
+            }
         }
+
+        music.play(); // 页面加载时自动播放音乐
     </script>
 </body>
 
-</html>    
+</html>
